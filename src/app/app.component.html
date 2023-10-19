@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/foods">Zomato</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hotel-foods">Zomato</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <strong *ngIf="loggedUserData && loggedUserData.userName"> {{loggedUserData.userName}}</strong>
+        <button class="btn btn-primary" *ngIf="loggedUserData && loggedUserData.userName" type="button" (click)="onLogoFF()">LogOff</button>
+        <button class="btn btn-primary" *ngIf="!loggedUserData" type="button" (click)="onLogin()">Login</button>
+        <button class="btn btn-primary" *ngIf="!loggedUserData" type="button" (click)="onRegister()">Register</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="modal" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="btn-close" (click)="closeLogin()" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-6">
+            <label for="">User Name</label>
+            <input type="text" [(ngModel)]="loginObj.userName" class="form-control">
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="">Password</label>
+            <input type="text"  [(ngModel)]="loginObj.password" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="login()" data-bs-dismiss="modal">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="registerModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Register</h4>
+        <button type="button" (click)="closeRegister()" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <label for="">EmailId</label>
+            <input type="text" [(ngModel)]="registerObj.emailId" class="form-control">
+          </div>
+          <div class="col-6">
+            <label for="">Mobile No</label>
+            <input type="text"  [(ngModel)]="registerObj.mobileNo" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="">User Name</label>
+            <input type="text"  [(ngModel)]="registerObj.userName" class="form-control">
+          </div>
+          <div class="col-6">
+            <label for="">Password</label>
+            <input type="text"  [(ngModel)]="registerObj.password" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="onSave()" data-bs-dismiss="modal">Register</button>
+      </div>
+    </div>
+  </div>
+</div>

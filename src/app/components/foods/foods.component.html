@@ -1,0 +1,10 @@
+<div class="row ">
+    <div class="col-3 pt-2" *ngFor="let category of foodItems">
+        <div class="card" (click)="navigateToRestaurantFoods(category.categoryId)">
+            <img class="card-img-top img-height" [src]="category.photoUrl">
+            <div class="card-body">
+                <h4 class="card-title">{{category.categoryName}}</h4>  
+            </div>
+        </div>
+    </div>
+</div>

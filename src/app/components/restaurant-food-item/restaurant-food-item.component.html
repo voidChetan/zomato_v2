@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4" *ngFor="let item of foodItemsList">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="img-height" [src]="item.photoUrl" />
+                            </div>
+                            <div class="col-9 text-end">
+                                {{item.menuItemName}}
+                                <br>
+                                <small>{{item.description |slice:0-20}}</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{item.price}}
+                            </div> 
+                            <div class="col-8 text-end">
+                                <button class="btn btn-success btn-sm" (click)="addtoCart(item.itemID)" >Add To Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12">
+                <h4>Cart Items</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 pt-2" *ngFor="let cart of cartItems">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img class="img-small-height" [src]="cart.photoUrl"/>
+                            </div>
+                            <div class="col-8 text-end">
+                                {{cart.menuItemName}}
+                                <br/>
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{cart.price}} * {{cart.quantity}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="cartItems.length ==0">
+                <p>Cart Is Empty</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end">
+               Total Amount -  {{totalAmount}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <textarea class="form-control" [(ngModel)]="deliveryAddres"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end">
+               <button class="btn btn-primary" [disabled]="cartItems.length ==0" (click)="onOrder()">Place Order</button>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12" *ngIf="foodItemsList.length ==0">
+        <p>No  Food Types Serving this Food Item</p>
+    </div>
+</div>
